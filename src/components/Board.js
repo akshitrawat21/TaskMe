@@ -7,7 +7,7 @@ const Board = () => {
   const [cards, setCards] = useState(DEFAULT_CARDS);
 
   return (
-    <div className="flex flex-wrap gap-4 p-2 overflow-auto">
+    <div className="flex flex-wrap gap-4 p-2">
       <div className="flex flex-col w-full sm:w-1/2 md:w-1/4 lg:w-1/5">
         <Column
           title="Backlog"
@@ -44,8 +44,9 @@ const Board = () => {
           setCards={setCards}
         />
       </div>
-      <div className="flex flex-col w-full sm:w-1/2 md:w-1/4 lg:w-1/5">
-        <BurnBarrel setCards={setCards} />
+      <div className="flex flex-row">
+        <BurnBarrel 
+         setCards={setCards} />
       </div>
     </div>
   );

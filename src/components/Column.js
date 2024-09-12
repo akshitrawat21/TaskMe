@@ -91,6 +91,11 @@ const Column = ({ title, headingColor, cards, column, setCards }) => {
     setActive(false);
   };
 
+  const handleDeleteCard = (cardId) => {
+    const updatedCards = cards.filter((card) => card.id !== cardId);
+    setCards(updatedCards);
+  };
+
   const filteredCards = cards.filter((c) => c.column === column);
 
   return (
@@ -105,9 +110,16 @@ const Column = ({ title, headingColor, cards, column, setCards }) => {
         onDragLeave={handleDragLeave}
         className={`h-full w-full transition-colors ${active ? "bg-neutral-800/50" : "bg-neutral-800/0"}`}
       >
-        {filteredCards.map((c) => {
-          return <Card key={c.id} {...c} handleDragStart={handleDragStart} />;
-        })}
+        {filteredCards.map((c) => (
+          <Card
+            key={c.id}
+            id={c.id}
+            title={c.title}
+            column={column}
+            handleDragStart={handleDragStart}
+            handleDelete={handleDeleteCard} // Pass the handleDelete function
+          />
+        ))}
         <DropIndicator beforeId={null} column={column} />
         <AddCard column={column} setCards={setCards} />
       </div>
